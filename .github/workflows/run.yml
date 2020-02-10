@@ -55,7 +55,7 @@ jobs:
           go get golang.org/x/tools/cmd/goimports
       - name: Generate stubs and mocks
         run: |
-          mkdir -p proto && mkdir -p mock_proto
+          mkdir -p proto && mkdir -p mock_proto && mkdir -p proto_common
           echo "protoc version: $(protoc --version)"
           protoc -I ${{ env.GRPC_DEFS_DIR }} -I ${{ env.GRPC_DEFS_DIR }}/vendor --go_out=plugins=grpc:proto ${{ env.GRPC_DEFS_DIR }}/init.proto
           protoc -I ${{ env.GRPC_DEFS_DIR }} -I ${{ env.GRPC_DEFS_DIR }}/vendor --go_out=plugins=grpc:proto ${{ env.GRPC_DEFS_DIR }}/helloworld.proto
