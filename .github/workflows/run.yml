@@ -57,7 +57,8 @@ jobs:
         run: |
           mkdir -p proto && mkdir -p mock_proto
           echo "protoc version: $(protoc --version)"
-          protoc -I ${{ env.GRPC_DEFS_DIR }} -I ${{ env.GRPC_DEFS_DIR }}/vendor --go_out=plugins=grpc:proto ${{ env.GRPC_DEFS_DIR }}/init.proto ${{ env.GRPC_DEFS_DIR }}/helloworld.proto
+          protoc -I ${{ env.GRPC_DEFS_DIR }} -I ${{ env.GRPC_DEFS_DIR }}/vendor --go_out=plugins=grpc:proto ${{ env.GRPC_DEFS_DIR }}/init.proto
+          protoc -I ${{ env.GRPC_DEFS_DIR }} -I ${{ env.GRPC_DEFS_DIR }}/vendor --go_out=plugins=grpc:proto ${{ env.GRPC_DEFS_DIR }}/helloworld.proto
           mockgen -package mock_proto -destination proto_common/mock_initializer.go -source proto_common/init.pb.go
           mockgen -package mock_proto -destination mock_proto/mock_helloworld.go  -source proto/helloworld.pb.go
           goimports -w ./
